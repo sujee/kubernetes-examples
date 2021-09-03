@@ -7,6 +7,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  #storageClassName: local-storage
+  storageClassName: standard
   resources:
     requests:
       storage: 3Gi
