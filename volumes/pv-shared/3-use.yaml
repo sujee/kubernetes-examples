@@ -1,0 +1,25 @@
+---
+## Persistent Volume Example
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: shared-volume-example-2
+spec:
+  containers:
+    - name: c1
+      image: ubuntu
+      command: ["/bin/bash" , "-c" , "sleep 10000"]
+      volumeMounts:
+        - name: xchange
+          mountPath: "/tmp/data"
+    - name: c2
+      image: ubuntu
+      command: ["/bin/bash" , "-c" , "sleep 10000"]
+      volumeMounts:
+        - name: xchange
+          mountPath: "/tmp/data"
+  volumes:
+    - name: xchange
+      persistentVolumeClaim:
+        claimName: myclaim-1
