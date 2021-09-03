@@ -1,11 +1,11 @@
 # Sharing a Persistent Volume
 
-- create PV: [1-create.yaml](1-create.yaml)
+- create PV: [1-pv.yaml](1-pv.yaml)
 - Claim PV : [2-claim.yaml](2-claim.yaml)
-- Use PV : [3-use.yaml](3-use.yaml)
+- Use PV : [3-pod.yaml](3-pod.yaml)
 
 ```bash
-$   kubectl  apply -f 1-create.yaml
+$   kubectl  apply -f 1-pv.yaml
 
 # check
 $   kubectl  get pv
@@ -20,7 +20,7 @@ $   kubectl  get pvc
 # should see claim bound to pv-1
 
 # start pods
-$   kubectl apply -f 3-use.yaml 
+$   kubectl apply -f 3-pod.yaml 
 $   kubectl get pods -o wide
 
 ## login to a pod and check
@@ -46,7 +46,7 @@ $   kubectl  delete pod shared-volume-example-2
 $   kubectl get pods -o wide
 
 ## recreate the pods
-$   kubectl apply -f 3-use.yaml 
+$   kubectl apply -f 3-pod.yaml 
 $   kubectl get pods -o wide
 
 ## login to a pod and check
@@ -58,4 +58,8 @@ $   kubectl exec -it shared-volume-example-2 -c c1 -- bash
 
 ## delete the pods
 $   kubectl  delete pod shared-volume-example-2
+
+## delete PV
+$   kubectl delete pvc myclaim-1
+$   kubectl delete pv pv-1
 ```
