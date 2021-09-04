@@ -86,3 +86,28 @@ Access and see the newer version
     # delete deployment
     $   kubectl delete deployment nginx-deployment
 ```
+
+## Bonus Lab
+
+Nginx was a good, but let spice it up a little bit.
+
+Let's use some fun web based games.
+
+First image we are going to use is pacman : 
+ https://hub.docker.com/r/golucky5/pacman
+
+- edit 1-deployment.yaml and update `image: golucky5/pacman`
+- Deploy this
+- And open a browser and go to `1.2.3.4:30163/`  (replace 1.2.3.4 with your node ip)
+
+Next udpate, we will deploy `super mario`
+
+https://hub.docker.com/r/pengbai/docker-supermario
+
+- edit 3-deployment-update.yaml and update `image: pengbai/docker-supermario`
+- Also adjust the container port to `8080`
+- edit `2-service.yaml`  and adjust container port to `8080`
+- update both deployment and service
+- Open a browser and go to `1.2.3.4:30163/`  (replace 1.2.3.4 with your node ip)
+
+see [fun-games](fun-games) folder  for solution
