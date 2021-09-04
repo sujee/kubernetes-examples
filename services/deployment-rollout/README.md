@@ -111,3 +111,16 @@ https://hub.docker.com/r/pengbai/docker-supermario
 - Open a browser and go to `1.2.3.4:30163/`  (replace 1.2.3.4 with your node ip)
 
 see [fun-games](fun-games) folder  for solution
+
+
+## References
+
+https://www.ovh.com/blog/getting-external-traffic-into-kubernetes-clusterip-nodeport-loadbalancer-and-ingress/
+
+https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0
+
+https://tachingchen.com/blog/kubernetes-rolling-update-with-deployment/
+
+https://matthewpalmer.net/kubernetes-app-developer/articles/service-kubernetes-example-tutorial.html
+
+https://www.ovh.com/blog/getting-external-traffic-into-kubernetes-clusterip-nodeport-loadbalancer-and-ingress/
