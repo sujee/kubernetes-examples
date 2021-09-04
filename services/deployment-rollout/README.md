@@ -2,6 +2,9 @@
 
 ## Build Custom Nginx Images
 
+The images are tagged in this format:  `docker_user_id/image_name:version`.  
+Adjust the username to match yours.
+
 ```bash
     $   (cd  app-v1;  docker build . -t sujee/nginx:1)
     $   (cd  app-v2;  docker build . -t sujee/nginx:2)
@@ -17,6 +20,17 @@
     $   curl localhost:8003
 
     # stop the docker containers
+```
+
+Push  our custom nginx images to dockerhub
+
+```bash
+    $   docker login
+    # login with your credentials
+
+    $   docker push sujee/nginx:1
+    $   docker push sujee/nginx:2
+    $   docker push sujee/nginx:3
 ```
 
 ## Deployment
@@ -39,7 +53,7 @@ file : [2-service.yaml](2-service.yaml)
 We create a service and use nodeport to expose the service
 
 ```bash
-    $   kubectl -f 2-service.yaml
+    $   kubectl apply -f 2-service.yaml
 
     $   kubectl get svc
 
@@ -60,6 +74,8 @@ Access the service nodeport ip
 ```
 
 ## Update Image
+
+file :  [3-deployment-update.yaml](3-deployment-update.yaml)
 
 ```bash
     $   kubectl replace -f 3-deployment-update.yaml 
@@ -89,7 +105,7 @@ Access and see the newer version
 
 ## Bonus Lab
 
-Nginx was a good, but let spice it up a little bit.
+Nginx was a good example, but not very exciting; let's spice things up a little bit :-)
 
 Let's use some fun web based games.
 
@@ -97,7 +113,7 @@ First image we are going to use is pacman :
  https://hub.docker.com/r/golucky5/pacman
 
 - edit 1-deployment.yaml and update `image: golucky5/pacman`
-- Deploy this
+- Redeploy deployment: `kubectl apply -f 1-deployment.yaml`
 - And open a browser and go to `1.2.3.4:30163/`  (replace 1.2.3.4 with your node ip)
 
 Next udpate, we will deploy `super mario`
@@ -107,7 +123,8 @@ https://hub.docker.com/r/pengbai/docker-supermario
 - edit 3-deployment-update.yaml and update `image: pengbai/docker-supermario`
 - Also adjust the container port to `8080`
 - edit `2-service.yaml`  and adjust container port to `8080`
-- update both deployment and service
+- update deployment: `kubectl apply -f 3-deployment-update.yaml`
+- update service: `kubectl apply -f 2-service.yaml`
 - Open a browser and go to `1.2.3.4:30163/`  (replace 1.2.3.4 with your node ip)
 
 see [fun-games](fun-games) folder  for solution
